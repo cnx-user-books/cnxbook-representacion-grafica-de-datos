@@ -1,0 +1,228 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>VI Monitor de Temperatura</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ba8ffd1c-fcb0-4420-b281-8ceff74bdea3</md:uuid>
+</metadata>
+  
+  <content>
+    <exercise id="e1">
+      <problem id="idp169616">
+	<para id="p1">Completar los siguientes pasos para construir un VI que mida la temperatura y la muestre en un diagrama.
+</para>
+	<section id="s1">
+	  <title>Panel Frontal</title>
+	  <list id="l1" list-type="enumerated"><item>
+	      Abrir un Vi en blanco y construir el panel frontal mostrado en la <link target-id="f1"/>.
+	      <figure id="f1">
+		<media id="idm4345200" alt=""><image src="../../media/tempmon.png" mime-type="image/png"/></media>
+	      </figure>
+	      <list id="l2" list-type="enumerated"><item>      
+		  Colocar en el panel frontal un interruptor vertical, situado en la paleta <code>Controls&gt;&gt;Buttons &amp; Switches</code>. Etiquetar el interruptor como 
+		  <code>Power</code>. Usar este interruptor para detener la lectura de más datos.
+		</item>
+		<item>	      
+		  Colocar en el panel frontal un <code>waveform chart</code>, situado en la paleta 
+		  <code>Controls&gt;&gt;Graph Indicators</code>. Etiquetar el waveform chart como <code>Temperature
+		    History</code>. El <code>waveform chart</code> visualiza la temperatura en tiempo real.
+		</item>
+		<item>	      
+		  <media id="idm673552" alt=""><image src="../../media/labeling.png" mime-type="image/png"/></media>
+		  La <code>leyenda</code> del <code>waveform chart</code> aparece como <code>Plot 0</code>. Usar 
+		  la herramienta <code>Labeling</code> y hacer triple-clic sobre <code>Plot
+		    0</code> en la leyenda del diagrama y cambiar la etiqueta a <code>Temp</code>.
+		</item>
+		<item>
+		  El sensor de temperatura mide la temperatura ambiente. Usar la herramienta <code>Labeling</code> para hacer doble-clic sobre 
+		  <m:math><m:cn>10.0</m:cn> </m:math> en el eje y y escribe <m:math><m:cn>90</m:cn> </m:math> para reescalar el diagrama. Dejar el eje x con su valor por defecto.
+		</item>
+		<item>
+
+		  Cambiar 
+		  <m:math>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>10.0</m:cn>
+		    </m:apply>
+		  </m:math> en el eje y a 
+		  <m:math>
+		    <m:cn>70</m:cn>
+		  </m:math>.
+		</item>
+		<item>
+		  Etiquetar el eje y como <code>Temp (Deg
+		    F)</code> y el eje x <code>Time (sec)</code>.
+		</item>
+	      </list>
+	    </item>
+	  </list>
+	</section>
+	<section id="s2">
+	  <title>Diagrama de Bloques</title>
+	  <list id="l3" list-type="enumerated"><item>
+	      Seleccionar <code>Window&gt;&gt;Show Block Diagram</code> para mostrar el diagrama de bloques.
+	    </item>
+	    <item>
+	      Construir el
+	      <link target-id="f2">diagrama de bloques</link> de la.
+	      <figure id="f2">
+		<media id="idm9180496" alt=""><image src="../../media/tempmonbd.png" mime-type="image/png"/></media>
+	      </figure>
+	    </item>
+	    <item>
+	      Hacer clic con el botón derecho sobre el terminal <code>conditional</code> y seleccionar
+	      <code>Continue if True</code>.
+	    </item>
+	    <item>
+	      Conectar los objetos como se muestra en la <link target-id="f2"/>.
+	      <list id="l4" list-type="enumerated"><item>      
+		  <media id="idm7918400" alt=""><image src="../../media/tempicon-04da.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques el VI <code>Thermometer</code>. Seleccionar <code>Functions&gt;&gt;All Functions&gt;&gt;Select a
+		    VI</code> y elegir <code>C:\Exercises\LabVIEW
+		    Basics I\Thermometer.vi.</code> Este subVI devuelve una medida de temperatura del sensor de temperatura.
+		  <note type="nota" id="idm8372000"><label>Nota</label>
+		    Usar el VI <code>(Demo) Thermometer</code> VI si no se dispone de un dispositivo DAQ (tarjeta de adquisición de datos).
+		  </note>
+		</item>
+		<item>    
+		  <media id="idm1666464" alt=""><image src="../../media/waitms.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques la función <code>Wait Until Next ms Multiple</code>, situada en la paleta <code>Functions&gt;&gt;All
+		    Functions&gt;&gt;Time &amp; Dialog</code>.
+		</item>
+		<item>
+		  <media id="idm16227792" alt=""><image src="../../media/tempmonconst.png" mime-type="image/png"/></media>
+		  Hacer clic con el botón derecho sobre la entrada <code>millisecond multiple</code>
+		  de la función <code>Wait Until Next ms
+		  Multiple</code>, seleccionar en el menú desplegable
+		  <code>Create&gt;&gt;Constant</code>, cambiar el valor a <m:math> <m:cn>500</m:cn> </m:math>, y pulsar la tecla
+		   <code>&lt;Enter&gt;</code>. La constante numérica especifica una espera de
+		  <m:math>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>500</m:cn>
+		      <m:ci> ms</m:ci>
+		    </m:apply>
+		  </m:math> tal que el bucle se ejecuta una vez cada medio segundo.
+		  <note type="nota" id="idm15928368"><label>Nota</label>Para medir la temperatura en grados centigrados, conectar la constante booleana <code>True</code> de la paleta
+		    <code>Functions&gt;&gt;Arithmetic &amp; Comparison&gt;&gt;Express
+		      Boolean</code> en la entrada <code>Temp Scale</code>
+		    del VI <code>Thermometer</code>. Cambiar la escala para los diagramas y gráficos que hagas en adelante a un rango de <m:math> <m:cn>20</m:cn> </m:math> a
+		    <m:math> <m:cn>32</m:cn> </m:math> en vez de <m:math>
+		      <m:cn>70</m:cn> </m:math> a <m:math> <m:cn>90</m:cn>
+		    </m:math>.
+		  </note>
+		</item>
+	      </list>
+	    </item>
+	    <item>
+	      Salvar el VI como <code>Temperature Monitor.vi</code> en el directorio
+	      <code>C:\Exercises\LabVIEW Basics I</code>.
+	    </item>
+	  </list>
+	</section>
+	<section id="s3">
+	  <title>Ejecutar el VI</title>
+	  <list id="l5" list-type="enumerated"><item>
+	      Visualizar el panel frontal haciendo clic sobre él o seleccionando 
+	      <code>Window&gt;&gt;Show Front Panel</code>.
+	    </item>
+	    <item>
+	      Usar la herramienta <code>Operating</code> para hacer clic sobre el interruptor y llevarlo a la posición
+	      <code>ON</code>.
+	    </item>
+	    <item>
+	      <!--needs to be corrected, should be seperate paragraphs-->
+	      Ejecución del VI.
+	      <!--different para-->
+	      El código contenido dentro del <code>bucle While</code> se estará ejecutando mientras la condición sea cierta (<code>True</code>). Por ejemplo, mientras el interruptor esté en la posición ON 
+	      (<code>True</code>), el VI <code>Thermometer</code> toma y devuelve una nueva medida y la muestra en el 
+	      <code>waveform chart</code>.
+	    </item>
+	    <item>
+	      Hacer clic sobre el interruptor para detener la toma de datos. La condición pasa a ser <code>False</code>, y el bucle se detiene.
+	    </item>
+	  </list>
+	</section>
+	<section id="s4">
+	  <title>Panel Frontal</title>
+	  <list id="l6" list-type="enumerated"><item>
+	      Formato y personalización de las escalas x e y del waveform chart.
+	      <list id="l7" list-type="enumerated"><item>     
+		  Hacer clic con el botón derecho sobre el diagrama y selecciona <code>Properties</code>
+		  en el menú que se despliega para mostrar la caja de dialogo <code>Chart
+		    Properties</code>.
+		</item>
+		<item>      
+		  Hacer clic sobre la pestaña <code>Format and Precision</code>. Seleccionar en la parte superior del menú desplegable
+		  <code>Deg F (Y-axis)</code>. Fijar la opción <code>Digits of precision</code> a
+		  <m:math><m:cn>1</m:cn></m:math>.
+		</item>
+		<item>      
+		  Hacer clic sobre la pestaña <code>Plots</code> y seleccionar para el eje y las opciones de   estilo que se muestran en la <link target-id="f3"/>.
+		  <figure id="f3">
+		    <media id="idm2318288" alt=""><image src="../../media/chartprop2.png" mime-type="image/png"/></media>
+		  </figure>
+		</item>
+		<item>      
+		  Seleccionar la pestaña <code>Scales</code> y seleccionar en la parte superior del menú desplegable 
+		  <code>Time (sec) (X-axis)</code>. Fijar las opciones de escala como se muestran en la <link target-id="f4"/>. Fijar el <code>Multiplier</code> en
+		  <m:math><m:cn>0.50</m:cn> </m:math> para tener en cuenta la función <code>500 ms Wait</code>.
+		  <figure id="f4">
+		    <media id="idp3675216" alt=""><image src="../../media/chartprop3.png" mime-type="image/png"/></media>
+		  </figure>
+		</item>
+		<item>      
+		  En la misma pestaña <code>Scales</code>, seleccionar en el menú desplegable de la parte superior <code>Deg F (Y-axis)</code>. Fijar las opciones de escala como se muestran en la <link target-id="f5"/>.
+		  <figure id="f5">
+		    <media id="idm3162704" alt=""><image src="../../media/chartprop4.png" mime-type="image/png"/></media>
+		  </figure>
+		</item>
+		<item>
+		  Hacer clic sobre el botón <code>OK</code> para cerrar la caja de dialogo.
+		</item>
+	      </list>
+	    </item>
+	    <item>
+	      Hacer clic con el botón derecho sobre el <code>waveform chart</code> y seleccionar en el menú desplegable
+	      <code>Data Operations&gt;&gt;Clear Chart</code> para limpiar el buffer de pantalla y reiniciar el 
+	      <code>waveform chart</code>.
+	      <note type="Pista" id="idm4177088"><label>Pista</label>
+		Cuando un VI está en ejecución, se puede seleccionar <code>Clear Chart</code> en el menú contextual para borrar el gráfico.
+	      </note>
+	    </item>
+	    <item>
+	      Cada vez que se ejecute el VI, hay que accionar el interruptor vertical y después hacer clic sobre el botón <code>Run</code> debido a la acción mecánica presente en el interruptor. Modificar la acción mecánica del interruptor tal que la temperatura se dibuje en el gráfico cada vez que se ponga en marcha el VI, sin tener primero que activar el interruptor.
+	      <list id="l8" list-type="enumerated"><item>      
+		  Parar el instrumento virtual si éste se encuentra corriendo.
+		</item>
+		<item>    
+		  Usar la herramienta  <code>Operating</code> para hacer clic sobre el interruptor y encenderlo (posición <code>ON</code>).
+		</item>
+		<item>     
+		  Hacer clic con el botón derecho sobre el interruptor y elegir en el menú contextual la opción <code>Data
+		    Operations&gt;&gt;Make Current Value Default</code>, para fijar la posición <code>ON</code> como valor por omisión.
+		</item>
+		<item>
+		  <media id="idp2415968" alt=""><image src="../../media/latchpress.png" mime-type="image/png"/></media> 
+		  Hacer clic con el botón derecho sobre el interruptor y elegir en el menú contextual la opción <code>Mechanical Action&gt;&gt;Latch When Pressed</code>. Este ajuste cambia el valor de control al hacer clic sobre él y retiene el nuevo valor hasta que el VI lo lee una vez. En ese momento el control vuelve a su valor por omisión, incluso si se mantiene pulsado el botón del ratón. Esta acción es similar a un circuito de parada y es util para detener los <code>While Loops</code> o para conseguir que el VI ejecute una sola acción cada vez que se acciona el control.
+	  
+		</item>
+      </list>
+	    </item>
+	  </list>
+	</section>
+	<section id="s5">
+	  <title>Ejecutar el VI</title>
+	  <list id="l9" list-type="enumerated"><item>
+	      Ejecutar el VI.
+	    </item>
+	    <item>
+	      Con la herramienta <code>Operating</code> hacer clic sobre el interruptor para detener la adquisición. El interruptor cambia a la posición <code>OFF</code> y regresa al valor <code>ON</code> una vez que el terminal <code>conditional</code> lea el valor.
+	    </item>
+	    <item>
+	      Salvar el VI. Usarás este VI en el ejercicio <link document="m12235">Temperature Running Average</link> VI.
+	    </item>
+	  </list>
+	</section>
+      </problem>
+    </exercise>
+  </content>
+</document>

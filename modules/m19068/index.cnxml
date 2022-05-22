@@ -1,0 +1,135 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Waveform Graphs y XY Graphs</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>95295b62-df35-41b9-8af6-d63f5c678e46</md:uuid>
+</metadata>
+  
+  <content>
+    <para id="delete_me">Los VIs con gráficos normalmente recogen datos en un array y luego dibujan los datos en el gráfico. La <link target-id="real"/> muestra los elementos de un gráfico.
+      
+      <figure id="real">
+	<media id="idm12063088" alt=""><image src="../../media/intensitygraphchart.png" mime-type="image/png"/></media>
+      </figure>
+    </para>   
+    
+    <para id="a_me">Los gráficos que se encuentran en la paleta <code>Controls&gt;&gt;Graph
+      Indicators</code> incluyen <code>waveform
+      graph</code> y <code>XY graph</code>. Los <code>waveform
+      graph</code> representan solo funciones single-valued, como en 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>y</m:ci>
+	  <m:apply>
+	    <m:ci type="fn">f</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>, con puntos distribuidos de manera uniforme a lo largo del eje X, tales como 
+      muestras de señales tomadas en diferentes tiempos.  <code>XY graphs</code>
+      visualizan cualquier conjunto de puntos, muestreados de manera ordenada o no.
+    </para>
+    
+    <para id="b_me">Redimensionar la leyenda del gráfico para mostrar múltiples señales. Esto se hará cuando se necesite ahorrar espacio en el panel frontal o para realizar comparaciones entre señales.  <code>XY graph</code> y <code>waveform graphs</code>
+      se adaptan automáticamente a varias señales.
+    </para>
+    
+    <section id="idm9412240">
+      <title> Single Plot Waveform Graphs </title>
+      
+      <para id="c_me">El <code>waveform graph</code> admite un array de datos sencillo, de una sola dimensión e interpreta los datos como puntos de la señal e incrementa el índice <m:math><m:ci>x</m:ci></m:math> de uno en uno comenzando por
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>x</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>. El gráfico también acepta un cluster con un valor inicial de <m:math><m:ci>x</m:ci></m:math>, un 
+	<m:math>
+	  <m:apply>
+	    <m:ci><m:mo>Δ</m:mo></m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>, y un array de datos <m:math><m:ci>y</m:ci></m:math>. Consultar el VI <code>Waveform Graph</code> en el localizador de ejemplos <code>NI Example Finder</code> para buscar ejemplos de los tipos de datos que aceptan los  <code>waveform graphs</code>.
+      </para>
+    </section>
+    
+    <section id="idm6984352">
+      <title>Multiplot Waveform Graphs </title>
+      <para id="q_me">Un multiplot <code>waveform graph</code> acepta un array de valores de 2D, donde cada fila del array corresponde a un gráfico. El multiplot <code>waveform graph</code> interpreta los datos como puntos del gráfico e incrementa el índice <m:math><m:ci>x</m:ci></m:math> en uno,
+	comenzando en 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>x</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>. Conectar un array 2D al gráfico, hacer clic con el botón derecho sobre el gráfico y seleccionar  <code>Transpose Array</code> en el menú contextual para gestionar cada columna del array como un gráfico.
+	Consultar sobre los <code>(Y) Multi Plot 1 graph</code> en el localizador de ejemplos
+	<code>Waveform Graph</code> VI in the <code>NI Example
+	Finder</code> para buscar un ejemplo de un gráfico que acepte este tipo de datos.
+      </para>
+      
+      <para id="w_me">Un multiplot <code>waveform graph</code> también acepta un cluster de un valor <m:math><m:ci>x</m:ci></m:math>, un valor
+	<m:math>
+	  <m:apply>
+	    <m:ci><m:mo>Δ</m:mo></m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>, y un array 2D de datos <m:math><m:ci>y</m:ci></m:math> data. El gráfico interpreta los datos
+	<m:math><m:ci>y</m:ci></m:math> como puntos en el gráfico e incrementa el indice <m:math><m:ci>x</m:ci></m:math> en 
+	<m:math>
+	  <m:apply>
+	    <m:ci><m:mo>Δ</m:mo></m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>, comenzando en 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>x</m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>. Consultar el <code>(Xo, dX, Y) Multi Plot 3
+	graph</code> en el VI <code>Waveform Graph</code> en el localizador de ejemplos
+	<code>NI Example Finder</code> para buscar un ejemplo de un gráfico que acepta este tipo de datos.
+      </para>
+      
+      <para id="r_me">Un multiplot <code>waveform graph</code> acepta un cluster de un valor initial <m:math><m:ci>x</m:ci></m:math>, un valor
+	<m:math>
+	  <m:apply>
+	    <m:ci><m:mo>Δ</m:mo></m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>, y un array que contiene clusters. Cada cluster contiene un array puntual que contiene el dato
+	<m:math><m:ci>y</m:ci></m:math>. Usar la función <code>Bundle</code> para agrupar los array en clusters, y así poder usar la función  <code>Build Array</code> para guardar los clusters resultantes en un array.
+	También se puede usar el <code>Build Cluster</code> Array, que crea arrays de clusters que contienen las entradas especificadas. Consultar el gráfico
+	<code>(Xo, dX, Y) Multi Plot 2</code> en el VI
+	<code>Waveform Graph</code> en el <code>NI Example
+	Finder</code> para buscar un ejemplo de un gráfico que acepta este tipo de datos.
+      </para>
+      
+    </section>
+    
+    
+    <section id="idm13001488">
+      <title>Single Plot XY Graphs </title>
+      <para id="t_me">El <code>single-plot XY graph</code> acepta un cluster que contiene un array <m:math><m:ci>x</m:ci></m:math> y un array
+	<m:math><m:ci>y</m:ci></m:math>. El <code>XY
+	graph</code> también acepta un array de puntos, donde un punto es un cluster que contiene un valor <m:math><m:ci>x</m:ci></m:math>
+	y un valor <m:math><m:ci>y</m:ci></m:math>. Consultar el VI <code>XY Graph</code> en el <code>NI Example
+	Finder</code> para buscar un ejemplo de los tipos de datos de un <code>XY
+	graph</code>.
+	</para>
+    </section>
+    
+    <section id="idm8662864">
+      <title>Multiplot XY Graphs</title>
+      <para id="y_me">El multiplot <code>XY graph</code> acepta un array de gráficos, donde un gráfico es un cluster que contiene un array x y un array y. El multiplot <code>XY graph</code> también acepta un array de cluster de gráficos, donde un gráfico es un array de puntos. Un punto es un cluster que contiene un valor x y un valor y. Consultar el VI <code>XY Graph</code> VI en el<code> NI
+	Example Finder</code> para buscar un ejemplo de los tipos de datos de un multiplot <code>XY
+	graph</code>.
+      </para>
+      
+    </section>
+  </content>
+  
+</document>

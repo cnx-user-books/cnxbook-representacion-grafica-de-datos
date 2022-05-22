@@ -1,0 +1,50 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Diagramas para formas de onda</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5171c057-27b5-4f87-ae09-c4e6ecb7f234</md:uuid>
+</metadata>
+
+  <content>
+
+    <para id="d_me">El <term><code>waveform chart</code></term> es un visualizador numérico que muestra una o más señales o formas de onda. Se encuentra en la paleta <code>Controls&gt;&gt;Graph Indicators</code>. Los <code>diagramas para formas de onda</code> pueden mostrar una o multiples representaciones. La <link target-id="f1"/> muestra los elementos de un diagrama multiplot. Se muestran 2 representaciones: <code>Raw Data</code> y <code>Running Avg</code>.
+      <figure id="f1">
+	<media id="idm7268528" alt=""><image src="../../media/chartelem.png" mime-type="image/png"/></media>
+      </figure>
+</para> 
+
+    <para id="e_me">Los diagramas usan 3 modos diferentes para desplazar los datos, como se muestra en la <link target-id="f2"/>. Para cambiar de modo, hacer clic con el botón derecho sobre el diagrama y seleccionar en el menú contextual <code>Advance&gt;&gt;Update Mode</code>. Elegir entre <code>Strip Chart</code>, <code>Scope Chart</code> o <code>Sweep chart</code>. El modo por defecto es <code>Strip Chart</code>.
+      <figure id="f2">
+	<media id="idm7729024" alt=""><image src=" chartmodes.png" mime-type="image/png"/></media>
+      </figure>
+
+    </para>
+
+    <para id="t_me">Un <code>strip chart</code> muestra los datos desplazandose de manera indefinida de izquierda a 
+derecha a través del diagrama. Un <code>scope chart</code> muestra un dato, como un pulso o una 
+onda desplazandose parcialmente a través del diagrama de izquierda a derecha. Un <code>sweep 
+chart</code> es similar a un electrocardiograma. Funciona de manera similar a <code>scope chart</code> 
+excepto que muestra una linea vertical que se desplaza reemplazando los datos viejos que se encuentran a la derecha de la linea por nuevos datos que aparecen por la izquierda de la linea. Los modos <code>scope chart</code> y <code>sweep chart</code> refrescan los datos de manera simular a como lo hace un osciloscopio. Dado que hay menos sobrecarga al añadir un dato que al desplazar todos los datos anteriores, los modos <code>scope chart</code> y <code>sweep chart</code> visualizan los gráficos significativamente más rápido que el modo <code>strip chart</code>.
+
+    </para>
+
+    <section id="idm5676688">
+      <title> Wiring Charts </title>
+      <para id="l_me">Se puede cablear una <code>variable numérica</code> directamente a un <code>diagrama de forma de onda</code>. El tipo de dato mostrado para el terminal de entrada del <code>Scope Chart</code> de la <link target-id="f5"/> se ajusta al tipo de dato de la salida del <code>VI Thermometer</code>.
+	<figure id="f5">
+	  <media id="idm4634000" alt=""><image src=" wirechart.png" mime-type="image/png"/></media>
+	</figure>
+     </para>
+
+      <para id="k_me">Los <code>diagramas de formas de onda</code> pueden visualizar multiples señales. Se pueden empaquetar multiples plots usando la función <code>Bundle</code> situada en la paleta <code>Cluster</code>. En la <link target-id="f6"/> la función <code>Bundle</code> empaqueta las salidas de 3 Vis para representarlos en un diagrama.
+	<figure id="f6">
+	  <media id="idm5661984" alt=""><image src=" wirechartmulti.png" mime-type="image/png"/></media>
+	</figure>
+      </para>
+
+      <para id="j_me">Se observa ahora que el terminal del <code>Scope Chart</code> en la <link target-id="f6"/> ha cambiado para que coincida con la salida de la función <code>Bundle</code>. Para añadir más plots, usar la herramienta de <code>posicionado</code> para redimensionar la función <code>Bundle</code>.
+	
+      </para>
+      
+    </section>  
+  </content>
+  
+</document>

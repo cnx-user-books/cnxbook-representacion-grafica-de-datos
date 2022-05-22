@@ -1,0 +1,205 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>VI Array de datos en un Waveform Graph</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5c460327-8626-48d9-bb00-0125aa6b037f</md:uuid>
+</metadata>
+  
+  <content>
+    <exercise id="e1"><problem id="idm12485552">
+	<para id="delete_me">
+	  Completar los siguientes pasos para construir un Vi que genere y represente un array en un  <code>waveform graph</code>.
+	</para>
+	
+	<section id="idm5331408">
+	  <title>Panel Frontal</title>
+
+	  <list id="banta1" list-type="enumerated"><item> Abrir un instrumento virtual nuevo ( blank VI ) y construir el panel frontal mostrado en la <link target-id="van"/>.
+	      <figure id="van">
+		<media id="idm9745488" alt=""><image src="../../media/graphwavaryfp.png" mime-type="image/png"/></media>
+	      </figure>
+
+	      <list id="banta2" list-type="enumerated"><item>
+		  Colocar en el panel frontal un <code>array</code>, situado en la paleta <code>Controls&gt;&gt;All Controls&gt;&gt;Array &amp;Cluster</code>.
+		</item>
+		<item>
+		  Etiquetar el array <code>Waveform Array</code>.
+		</item>
+		<item>
+		  Colocar un <code>numeric indicator</code>, situado en la paleta <code>Controls&gt;&gt;Numeric Indicators</code>, dentro del <code>array</code>.
+		</item>
+		<item>
+		  Colocar en el panel frontal un <code>waveform graph</code>, situado en la paleta <code>Controls&gt;&gt;Graph Indicators</code>.
+		</item>
+	      </list>
+	    </item>
+	  </list>
+	</section>
+	
+	<section id="idm9228544">
+	  <title>Diagrama de Bloques</title>
+	  <list id="banta3" list-type="enumerated"><item> Construir el diagrama de bloques mostrado en la <link target-id="van2"/>.
+	      <figure id="van2">
+		<media id="idm5479632" alt=""><image src="../../media/graphwavarybd.png" mime-type="image/png"/></media>
+	      </figure>
+	      <list id="banta4" list-type="enumerated"><item>
+		  <media id="idm522000" alt=""><image src="../../media/tempicon-74e1.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques el instrumento <code>Thermometer</code>.  Seleccionar <code>Functions&gt;&gt;All Functions&gt;&gt;Select
+		    a VI</code> y navegar hasta <code>C:\Exercises\ LabVIEW Basics I\Thermometer.vi</code>. Este subVI devuelve una lectura de temperatura cada ejecución del <code>Bucle For</code>.  
+		  <note id="idm12143696"> 
+		    Si no se dispone de una tarjeta de adquisición de datos DAQ, usar el instrumento <code>(Demo) Thermometer</code>.
+		  </note>
+		</item>
+		<item>
+		  <media id="idm10503648" alt=""><image src="../../media/forloop.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques un <code>Bucle For</code>, situado en la paleta <code>Functions&gt;&gt;All Functions&gt;&gt;Structures</code>. En este ejercicio, cada ejecución del
+		  <code>Bucle For</code> genera un valor de temperatura y lo almacena en el tunel de salida. Crear una constante de <code>100</code> para el terminal de cuenta.
+		</item>
+		<item>
+		  Conectar el diagrama de bloques como se muestra en la <link target-id="van2"/>.
+		  <note id="idm10529376">Cuando se conectan datos a charts y a graphs, se puede consultar la ventana de ayuda contextual 
+		    <code>Context Help</code> para obtener mayor información sobre el conexionado de los objetos, para decidir si usar la función 
+		    <code>Build Array</code> o la función <code>Bundle</code>, o para determinar el orden de los terminales de entrada y demás. En general, para representar puntos independientes se usa el <code>waveform chart</code>, para representar un array de valores y se usa el <code>waveform graph</code>, mientras que un <code>XY graph</code>, se usa para representar un <code>array</code> de valores <m:math><m:ci>x</m:ci></m:math> y un array de valores <m:math><m:ci>y</m:ci></m:math> relacionados. Por ejemplo, si se mueve el cursor sobre el terminal de un <code>waveform
+		      graph</code> en el diagrama de bloques, la ventana  <code>Context Help</code> muestra la información que aparece en la figura <link target-id="van3"/>. Seleccionar
+		    <code>Help&gt;&gt;Find Examples</code> para lanzar el buscador de ejemplos <code>NI Example Finder</code>, hacer doble clic sobre  <code>Fundamentals</code>, doble clic sobre <code>Graphs
+		      and Charts</code>, y doble clic sobre el Instrumento <code>Waveform
+		      Graph</code> para abrir el ejemplo.  Consultar la lección sobre Data Acquisition and Waveforms para una mayor información sobre los tipos de datos para waveforms.
+		  </note>
+		  <figure id="van3">
+		    <media id="idm1610512" alt=""><image src="../../media/graphchelp.png" mime-type="image/png"/></media>
+		  </figure>
+		</item>
+	      </list>
+	    </item>
+	    
+	    <item>
+	      Salvar el VI como <code>Graph Waveform Array.vi</code> en el directorio <code>C:\Exercises\LabVIEW Basics I</code>.
+	    </item>
+	    
+	  </list>
+	</section>
+
+	<section id="idm2549200">
+	  <title>Ejecutar el VI</title>
+	  <list id="banta6" list-type="enumerated"><item> 
+	      Mostrar el panel frontal y ejecutar el VI. El VI dibuja los datos del array de forma de onda auto-indexado en el <code>waveform
+		graph</code>.
+	    </item> 
+	    <item> 
+	      Introducir el indice de cualquier elemento en el visualizador del indice del <code>Waveform
+		Array</code> para ver el valor de ese elemento. Si se introduce un número mayor que el tamaño del array (100), el elemento mostrado aparecerá atenuado.
+	    </item> 
+	    <item> 
+	      Usar la herramienta <code>Positioning</code> para redimensionar el <code>Waveform Array</code> para ver más de un elemento. El indicador muestra elementos en orden ascendente, a partir del indice que se haya introducido.
+	    </item> 
+	  </list>
+	</section>
+	<section id="idp547376">
+	  <title>Diagrama de Bloques</title>
+	  <para id="natalie">En este diagrama de bloques, usar el valor por defecto inicial de la
+ <m:math><m:ci>x</m:ci></m:math> y el valor del 
+	    <m:math>
+	      <m:apply>
+		<m:ci><m:mo>Δ</m:mo></m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:math> para la señal. En los casos en que la
+	    <m:math><m:ci>x</m:ci></m:math> inicial y el
+	    <m:math>
+	      <m:apply>
+		<m:ci><m:mo>Δ</m:mo></m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:math> tengan un valor específico, usar la función de empaquetado
+	    <code>Bundle</code> para establecer el valor inicial de
+	    <m:math><m:ci>x</m:ci></m:math> y el valor del
+	    <m:math>
+	      <m:apply>
+		<m:ci><m:mo>Δ</m:mo></m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:math> para el <code>waveform array</code>.
+	  </para>
+	  <list id="banta7" list-type="enumerated"><item> 
+
+	     Modificar el diagrama de bloques como se muestra en la figura <link target-id="vanhelfin"/>.
+	      <figure id="vanhelfin">
+		<media id="idm8865136" alt=""><image src="../../media/graphwavaryclusbd.png" mime-type="image/png"/></media>
+	      </figure>
+	      <list id="banta8" list-type="enumerated"><item>  
+		  <media id="idm10790656" alt=""><image src="../../media/bundle.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques la función <code>Bundle</code>, situada en la paleta <code>Functions&gt;&gt;All Functions&gt;&gt;Cluster</code>. Esta función ensambla los elementos a representar en un cluster único. Los elementos incluyen el valor inicial de <m:math><m:ci>x</m:ci></m:math> (<m:math><m:cn>20</m:cn></m:math>), el valor del 
+<m:math>
+		    <m:apply>
+		      <m:ci><m:mo>Δ</m:mo></m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:math> (<m:math><m:cn>0.5</m:cn></m:math>), y el array <m:math><m:ci>x</m:ci></m:math> con los datos.
+
+		</item> 
+		<item> 
+		  Crear 2 constantes numéricas para el valor inicial de <m:math><m:ci>x</m:ci></m:math> y el valor del
+		  <m:math>
+		    <m:apply>
+		      <m:ci><m:mo>Δ</m:mo></m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:math>.
+		</item> 
+		<item> 
+		  Etiquetar la constante para el 
+		  <m:math>
+		    <m:apply>
+		      <m:ci><m:mo>Δ</m:mo></m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:math> como <code>Dx</code>. Usar la herramienta de etiquetado <code>Labeling</code> para seleccionar la letra <code>D</code>
+		  y elegir la fuente de texto <code>Symbol</code> en el menú desplegable 
+<code>Text Settings</code> de la barra de herramientas. La letra <code>D</code> se convertirá en el símbolo de delta (Δ).  </item> 
+
+		<item> 
+
+		  Conectar el diagrama de bloques como se muestra en la <link target-id="vanhelfin"/>.
+
+		</item> 
+	      </list>
+	    </item>
+	    <item> Salvar el VI.
+	    </item> 
+	  </list>
+	</section>
+
+	<section id="idm5517440">
+	  <title>Ejecutar el VI</title>
+	  <list id="banta22" list-type="enumerated"><item> 
+
+	      Mostrar el panel frontal y ejecutar el VI. El gráfico muestra los mismos <m:math><m:cn>100</m:cn></m:math> puntos de datos con un valor inicial de <m:math><m:cn>20</m:cn></m:math>
+	      y un 
+	      <m:math>
+		<m:apply>
+		  <m:ci><m:mo>Δ</m:mo></m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:math>
+	      de <m:math><m:cn>0.5</m:cn></m:math> para cada punto del eje x. Esto correspondería a un periodo de tiempo de <m:math><m:cn>50</m:cn></m:math> segundos de datos validos a partir de los <m:math><m:cn>20</m:cn></m:math> segundos.
+	      <note id="idm2490784">
+
+		Se puede cambiar el valor inicial de <m:math><m:ci>x</m:ci></m:math> y del
+		<m:math>
+		  <m:apply>
+		    <m:ci><m:mo>Δ</m:mo></m:ci>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		</m:math>
+		en cualquiera de estos sitios: en la función
+		<code>Bundle</code> o bien en la caja de dialogo <code>Waveform
+		  Graph Properties</code>, pero no en ambos.</note>
+	    </item>
+	  </list>
+	</section>
+
+
+	
+      </problem>
+    </exercise>
+  </content>
+  
+</document>

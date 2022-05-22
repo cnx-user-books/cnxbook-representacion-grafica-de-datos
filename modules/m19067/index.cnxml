@@ -1,0 +1,229 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>VI Promedio de temperaturas</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fcc25be1-2229-49ce-9853-a505ab25acb7</md:uuid>
+</metadata>
+  
+  <content>
+    <exercise id="e1"><problem id="idm352784">
+	<para id="para1">Completar los siguientes pasos para modificar el VI <code>Temperature
+	    Monitor</code> para promediar las 3 últimas medidas y visualizar la media en el diagrama <code>waveform
+	    chart</code>.</para>
+	<section id="section1">
+	  <title>Panel Frontal</title>
+	  <list id="list1" list-type="enumerated"><item>
+	      Abrir el VI <link document="m12234">Temperature Monitor</link>.
+	    </item>
+	    <item>
+	      Seleccionar <code>File&gt;&gt;Save As</code> y renombrar el VI con el nombre 
+	      <code>Temperature Running Average.vi</code> en el directorio 
+	      <code>C:\Exercises\LabVIEW Basics I</code>.
+	    </item>
+	  </list>
+	</section>
+	<section id="section2">
+	  <title>Diagrama de Bloques</title>
+	  <list id="list2" list-type="enumerated"><item>
+	      Visualizar el diagrama de bloques.
+	    </item>
+	    <item>
+	      Hacer clic con el botón derecho sobre uno de los laterales izquierdo o derecho del <code>While
+		Loop</code> y elegir en el menú contextual la opción <code>Add Shift Register</code> para crear un <code>registro de desplazamiento</code>.
+	    </item>
+	    <item>
+	      Hacer clic con el botón derecho sobre el terminal izquierdo del <code>shift
+		register</code> y seleccionar <code>Add Element</code> en el menú desplegable para añadir un elemento al <code>shift
+		register</code>.
+	    </item>
+	    <item>
+	      Modificar el diagrama de bloques como en la <link target-id="f1"/>.
+	      <figure id="f1">
+		<media id="idm19315408" alt=""><image src="../../media/temprunavgbd.png" mime-type="image/png"/></media>
+	      </figure>
+	      <list id="list3" list-type="enumerated"><item>   
+		  <!--needs to be corrected, should be a seperate
+		  paragraph-->
+		  <media id="idm10670464" alt=""><image src="../../media/tempicon-04da.png" mime-type="image/png"/></media>
+		  Pulsar la tecla <code>&lt;Ctrl&gt;</code> mientras se hace clic sobre el VI
+		  <code>Thermometer</code> y arrastrarlo fuera del
+		  <code>Bucle While</code> para crear una copia del subVI.
+		  <!--different para-->
+		  El VI <code>Thermometer</code> toma una muestra de temperatura del sensor de temperatura e inicializa el <code>registro de desplazamiento</code> antes de que comience el bucle.
+		</item>
+		<item>	      
+		  <media id="idm245504" alt=""><image src="../../media/compariticon.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques la función <code>Compound Arithmetic</code>,
+		  situada en la paleta <code>Functions&gt;&gt;Arithmetic &amp;
+		    Comparison&gt;&gt;Express Numeric</code>. Esta función devuelve la suma de la temperatura actual y las dos lecturas de temperatura previas. Usar la herramienta <code>Positioning</code> tool (herramienta de posicionado) para redimensionar la función y que tenga tres terminales a la izquierda.
+		</item>
+		<item>            
+		  <media id="idm8822016" alt=""><image src="../../media/divicon.png" mime-type="image/png"/></media>
+		  Colocar en el diagrama de bloques la función <code>Divide</code>, situada en la paleta
+		  <code>Functions&gt;&gt;Arithmetic &amp; Comparison&gt;&gt;Express
+		    Numeric</code>.
+		</item>
+		<item>             
+		  <media id="idm7032816" alt=""><image src="../../media/divconst.png" mime-type="image/png"/></media>
+		  Hacer clic con el botón derecho sobre el terminal <code>y</code> de la función
+		  <code>Divide</code>, seleccionar
+		  <code>Create&gt;&gt;Constant</code>, escribir <m:math>
+		    <m:cn>3</m:cn> </m:math>, y pulsar la tecla
+		  <code>&lt;Enter&gt;</code>.Ahora la función <code>Divide</code> devuelve la media de las 3 últimas lecturas de la temperatura.
+		</item>
+</list>
+	    </item>
+	  </list>
+	</section>
+	<section id="section3">
+	  <title>Puesta en marcha del instrumento virtual</title>
+	  <list id="list4" list-type="enumerated"><item>
+	      <!--needs to be corrected, should be a seperate paragraph-->
+	      Puesta en marcha del VI.
+	      <!--different para-->
+	      Durante cada iteración del <code>bucle While</code>, el VI
+	      <code>Thermometer</code> toma una muestra de temperatura. El VI añade este valor a las 2 últimas medidas almacenadas en los terminales izquierdos del <code>registro de desplazamiento</code>. El VI divide el resultado entre 3 para hallar la media de las 3 medidas, la última y las 2 anteriores. El VI muestra la media en el <code>waveform chart</code>. Observar que el VI inicializa el <code>registro de desplazamiento</code> con una medida de temperatura.
+	    </item>
+	  </list>
+	</section>
+	<section id="section4">
+	  <title>Diagrama de Bloques</title>
+	  <list id="list5" list-type="enumerated"><item>
+	      Modificar el diagrama de bloques como se muestra en la <link target-id="f2"/>.
+	      <figure id="f2">
+		<media id="idm6009776" alt=""><image src="../../media/temprunavgmultbd.png" mime-type="image/png"/></media>
+	      </figure>
+	      <list id="list6" list-type="enumerated">
+		<item>
+		  <media id="idm8757776" alt=""><image src="../../media/bundleicon.png" mime-type="image/png"/></media>      
+		  Colocar en el diagrama de bloques la función <code>Bundle</code>, situada en la paleta
+		  <code>Functions&gt;&gt;All Functions&gt;&gt;Cluster</code>. Esta función empaqueta las temperaturas media y actual para dibujarlas en el <code>waveform chart</code>.
+		</item>
+	      </list>
+	    </item>
+	    <item>
+	      Salvar el VI. Más tarde a lo largo del curso se usará este VI.
+	    </item>
+	  </list>
+	</section>
+	<section id="section5">
+	  <title>Puesta en marcha del instrumento virtual</title>
+	  <list id="list7" list-type="enumerated"><item>
+	      Ejecutar el VI. El VI muestra dos gráficas en el <code>waveform
+		chart</code>. Ambas señales se encuentran superpuestas. Es decir, comparten la misma escala vertical.
+	    </item>
+	    <item>
+	      Cerrar el VI.
+	    </item>
+	  </list>
+	</section>
+	<section id="section6">
+	  <title>Opcional</title>
+	  <para id="para2">Personalizar el waveform chart como se muestra en la <link target-id="f3"/>. Se puede mostrar la leyenda de la gráfica, la leyenda de la escala, la paleta de gráficos, un display digital, y una barra de desplazamiento. Por omisión, un <code>waveform chart</code> solo muestra la leyenda de la gráfica.
+	  </para>
+	  <figure id="f3">
+	    <media id="idm10247328" alt=""><image src="../../media/temprunavgfp.png" mime-type="image/png"/></media>
+	  </figure>
+	  <list id="list8" list-type="enumerated"><item>
+	      Personalizar el eje X.
+	      <list id="list9" list-type="enumerated"><item>
+		  <media id="idm5089552" alt=""><image src="../../media/labeling.png" mime-type="image/png"/></media>
+		  Usar la herramienta <code>Labeling</code> y hacer doble clic sobre el 
+		  <m:math> <m:cn>70.0</m:cn> </m:math> en el eje y, escribe
+		  <m:math> <m:cn>75.0</m:cn> </m:math>, y pulsa la tecla 
+		  <code>&lt;Enter&gt;</code>.
+		</item>
+		<item>
+		  	  <!--needs to be corrected, should be a seperate paragraph-->
+		  Usar la herramienta <code>Labeling</code> y hacer doble clic sobre el
+		  segundo número en la parte inferior del eje y, escribe 
+		  <m:math><m:cn>80.0</m:cn> </m:math>, y pulsa la tecla
+		  <code>&lt;Enter&gt;</code>. Este número determina el espaciado numérico de las divisiones del eje y.
+		  <!--different para-->
+		  Por ejemplo, si el número encima de <m:math>
+		    <m:cn>75.0</m:cn> </m:math> fuera <m:math>
+		    <m:cn>77.5</m:cn> </m:math>, indicaria divisiones en el eje y cada <m:math> <m:cn>2.5</m:cn> </m:math>,
+		  cambiando el <m:math> <m:cn>77.5</m:cn> </m:math> por
+		  <m:math> <m:cn>80.0</m:cn> </m:math> se reformatea el eje y a múltiplos de <m:math> <m:cn>5.0</m:cn>
+		  </m:math> (<m:math> <m:cn>75.0</m:cn> </m:math>,
+		  <m:math> <m:cn>80.0</m:cn> </m:math>, <m:math>
+		    <m:cn>85.0</m:cn> </m:math>, y así sucesivamente).
+		</item>
+	      </list>
+	      <note type="nota" id="idm611504"><label>Nota</label>El tamaño del <code>waveform chart</code> tiene una repercusión directa en los escalas de los ejes mostrados. Aumentar el tamaño del <code>waveform
+		  chart</code> si se observa algún problema al personalizar los ejes.
+      </note>
+	    </item>
+	    <item>
+
+
+
+
+
+
+	      Hacer clic con el botón derecho sobre el diagrama y seleccionar en el menú contextual <code>Visible
+		Items&gt;&gt;Scale Legend</code> para visualizar la leyenda de escala, como se muestra en la <link target-id="f4"/>. Puedes colocar la leyenda de escala en cualquier lugar del panel frontal.
+	      <figure id="f4"><media id="idm13466528" alt=""><image src="../../media/scale.png" mime-type="image/png"/></media><caption>
+		  1. Eje X,
+		  2. Eje Y,
+		  3. Etiquetas de Escala,
+		  4. Botón para fijar la escala,
+		  5. Botón Autoescala,
+		  6. Botón Formato de Escala.</caption></figure>
+	    </item>
+	    <item>
+	      Usar la leyenda de escala para personalizar la apariencia de cada eje.
+	      <list id="list10" list-type="enumerated"><item>      
+		  Asegurarse que el botón <code>Lock Autoscale</code> aparece bloqueado y que el LED <code>Autoscale</code> está verde para que el eje y ajuste los valores mínimos y máximos en función de los datos en el diagrama.
+		</item>
+		<item>
+		  Hacer clic sobre el botón <code>Scale Format</code> para cambiar el formato, la precisión, el modo de mapeado, la visibilidad de la escala y las opciones de rejilla para cada eje.
+		</item>
+	      </list>
+	    </item>
+	    <item>
+	      Usar la leyenda del gráfico para personalizar cada señal.
+	      <list id="list11" list-type="enumerated"><item>
+		  Usar la herramienta <code>Positioning</code> para redimensionar la leyenda del gráfico e incluir dos señales.
+		</item>
+		<item> 
+		  Usar la herramienta <code>Labeling</code> para cambiar 
+		  <code>Temp</code> por <code>Running Avg</code> y para cambiar <code>Plot 1</code> por <code>Current
+		    Temp</code>. Si el texto no cupiera, usar la herramienta de posicionado para aumentar el tamaño de la leyenda.
+		</item>
+		<item> 
+		  Hacer clic con el botón derecho sobre el gráfico en la leyenda para fijar los estilos de linea, de los puntos y el color del fondo y del trazado.
+		</item>
+	      </list>
+	    </item>
+	    <item>
+	      <!--needs to be corrected, should be a seperate paragraph-->
+	      Hacer clic con el botón derecho sobre el <code>waveform chart</code> y seleccionar en el menú contextual
+	      <code>Visible Items&gt;&gt;Graph Palette</code> para seleccionar la paleta de gráficos mostrada en la figura <link target-id="f5"/>. Esta paleta se puede colocar donde se quiera en el panel frontal.
+	      <figure id="f5"><media id="idm288832" alt=""><image src="../../media/graphpal.png" mime-type="image/png"/></media><caption>
+		  1. Herramienta para mover el cursor,
+		  2. Botón Zoom,
+		  3. Herramienta de desplazamiento,
+		  4. Menú desplegable del botón Zoom.
+		</caption></figure>
+	      <!--different para-->
+	      Usar el botón <code>Zoom</code> en la paleta gráfica para acercarse o alejarse en una región del diagrama o en todo el diagrama. Usa la herramienta 
+	      <code>Panning</code> para seleccionar el gráfico y moverlo a lo largo del área de visualización. Usar la herramienta <code>Cursor
+		Movement</code> para mover el cursor sobre el gráfico.
+	    </item>
+	    <item>
+Ejecución del VI. Mientras el VI se está ejecutando, usar los botones en la leyenda de escala y en la paleta gráfica para modificar el <code>waveform
+		chart</code>.
+	      <note type="nota" id="idm1255696"><label>Nota</label>Modificar las etiquetas de los ejes, podría causar que el área de visualización llegara a ser mayor que el tamaño máximo que el VI pudiera tener para que se mostrase correctamente.	      </note>
+	    </item>
+	    <item>
+	      Usar la herramienta <code>Operating</code> para hacer clic sobre el interruptor <code>Power</code> y finalizar la ejecución del VI.
+	    </item>
+	    <item>
+	      Salvar y cerrar el VI.
+	    </item>
+
+	  </list>
+	</section>
+      </problem>
+ </exercise>
+  </content>
+</document>
